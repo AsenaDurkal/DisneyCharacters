@@ -1,0 +1,89 @@
+﻿@page
+@model WebApplication2.Pages.DisplayCharacterModel
+@{
+}
+
+		<img src="@Model.Character.ImageUrl" alt="@Model.Character.Name + pic">
+
+		<p>Character name: @Model.Character.Name</p>
+		
+		
+		<p>Films:</p>
+
+		@if(Model.Character.Films.Count != 0)
+		{foreach (string s in @Model.Character.Films)
+		 {
+			<p> @s</p>
+
+		 }
+		}
+
+		 else if(Model.Character.Films.Count == 0)
+		 {
+			 
+			 <p> No films</p>
+		 }
+		 
+		<p>Tv shows:</p>
+
+		@if(Model.Character.TvShows.Count != 0)
+		{foreach (string s in @Model.Character.TvShows)
+		 {
+			<p> @s</p>
+
+		 }
+		}
+
+		 else if(Model.Character.TvShows.Count == 0)
+		 {
+			 
+			 <p> No TV shows</p>
+		 }
+		
+
+		<p>Video Games:</p>
+		@if(Model.Character.VideoGames.Count != 0)
+		{foreach (string s in @Model.Character.VideoGames)
+		 {
+			<p> @s</p>
+
+		 }
+		}
+
+		 else if(Model.Character.VideoGames.Count == 0)
+		 {
+			 
+			 <p>No video games.</p>
+		 }
+
+
+		<p>Short Films:</p>
+		@if(Model.Character.ShortFilms.Count != 0)
+		{foreach (string s in @Model.Character.ShortFilms)
+		 {
+			<p> @s</p>
+
+		 }
+		}
+
+		 else if(Model.Character.ShortFilms.Count == 0)
+		 {
+			 
+			 <p>No short films</p>
+		 }
+		 
+		 <p>Park Attractions:</p>
+		 @if(Model.Character.ParkAttractions.Count != 0)
+		{foreach (string s in @Model.Character.ParkAttractions)
+		 {
+			<p> @s</p>
+
+		 }
+		}
+
+		 else if(Model.Character.ParkAttractions.Count == 0)
+		 {
+			 
+			 <p>No park attractions</p>
+		 }
+	

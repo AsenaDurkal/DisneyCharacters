@@ -1,0 +1,104 @@
+﻿@page
+@model WebApplication2.Pages.DisneyCharactersGeneralModel
+@{
+	
+}
+
+
+<form onchange = "SortValue">
+
+		<select asp-for = "SortValue">
+			<option value ="0">Sort alphabetically asc</option>
+			<option value ="1">Sort alphabetically desc</option>
+			
+		</select>
+	<button type = "submit" class= "btn btn-primary">Get sorted list</button>
+    
+	</form>
+
+
+
+<label for="cars">Search:</label>
+
+<input id="test" type="text" list="myselection" />
+<datalist id="myselection">
+
+	@foreach(Data data in Model.DisneyCharacter.Datas)
+	{
+		 <option  asp-route-CharCode = "@data.Id" >@data.Name -- @data.Id</option>
+	}
+</datalist>
+<button type="submit" class="btn btn-primary" onclick="confirmCharacter()">Confirm</button>
+
+
+
+<script>
+function confirmCharacter(){
+	var selectedValue = document.getElementById("test").value;
+	var code = selectedValue.split("--")[1]
+	window.location.replace("/DisplayCharacter?CharCode="+code);
+
+
+}
+
+</script>
+
+<form method = "post">
+	@foreach(Data data in Model.DisneyCharacter.Datas){
+	
+				
+				<ul>
+					<li >
+						<a asp-page = "/DisplayCharacter" asp-route-CharCode = "@data.Id"> Character Name: @data.Name</a>
+					</li>
+					
+
+				</ul>
+					
+	           }
+	
+</form>
+
+<form onchange="">
+
+	<p> Number of available pages:149</p>
+	<br />
+	<input id="pageNumber" asp-for="PageNumber"/>
+
+</form>
+<br />
+
+<button onclick="pagePrev()">Page Prev</button>
+<button onclick="pageNext()">Page Next</button>
+
+
+
+
+<script>
+
+function pageNext() {
+	var page = document.getElementById("pageNumber").value;
+	page = Number(page)
+    if (page == 0) {
+        window.location.replace("/DisneyCharactersGeneral?PageNumber=2");
+    } else {
+        page = page + 1
+        window.location.replace("/DisneyCharactersGeneral?PageNumber=" + page);
+    } 
+}
+
+function pagePrev() {
+	var page = document.getElementById("pageNumber").value;
+	page = Number(page)
+    if (page == 0) {
+        window.location.reload();
+    } else {
+        page = page - 1
+        window.location.replace("/DisneyCharactersGeneral?PageNumber=" + page);
+    } 
+}
+</script>
+
+
+
+
